@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.Common.CommonStatus;
+import com.example.demo.Common.DemoException;
 import com.example.demo.DTO.TeacherDto;
 import com.example.demo.Model.Teacher;
 import com.example.demo.Service.TeacherService;
@@ -30,12 +31,17 @@ public class TeacherController {
     }
     //Create Teacher
     @PostMapping
-    public ResponseEntity<Teacher> createUser (@RequestBody CreateTeacherRequest request){
-        Teacher createdTeacher = teacherService.createTeacher(request);
-        return new ResponseEntity<>(createdTeacher, HttpStatus.CREATED);
+    public ResponseEntity<CommonStatus> saveTeacher (@RequestBody TeacherDto teacherDto){
+        if(teacherDto.getId() != null) throw new DemoException("Tạo mới không được có id");
+        return ResponseEntity.ok(teacherService.saveTeacher(teacherDto));
     }
 
     //Update Teacher
+    @PutMapping("")
+    public ResponseEntity<CommonStatus> updateTeacher(@RequestBody TeacherDto teacherDto){
+        if(teacherDto.getId() == null) throw new DemoException("Bắt buộc có ID");
+        return ResponseEntity.ok(teacherService.saveTeacher(teacherDto));
+    }
 
     //Delete Teacehr
     @DeleteMapping("/{id}")

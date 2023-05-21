@@ -20,6 +20,7 @@ public class TeacherService {
 
     private final TeacherMapper teacherMapper;
 
+    //get teacher by id
     public Teacher getTeacherByID(Long id){
 
         Teacher teacher = teacherRepository.findById(id).get();
@@ -30,18 +31,13 @@ public class TeacherService {
         return teacher;
     }
 
+    //get all teacher
     public List<Teacher> getAllTeachers(){
         return teacherRepository.findAll();
     }
 
-    public Teacher createUser(CreateUserRequest request){
-        Teacher teacher = new Teacher();
-        teacher.setAge(request.getAge());
-        teacher.setId(request.getId());
-        teacher.setImage(request.getImage());
-        teacher.setName(rq);
-    }
 
+    //delete teacher
     public CommonStatus deleteTeacher(Long id){
         teacherRepository.findById(id);
 
@@ -51,4 +47,15 @@ public class TeacherService {
         commonStatus.setResponse("200");
         return commonStatus;
     }
+
+    //
+    public CommonStatus saveTeacher(TeacherDto teacherDto){
+        Teacher teacher = teacherMapper.toEntity(teacherDto);
+        teacherRepository.save(teacher);
+        CommonStatus commonStatus = new CommonStatus();
+        commonStatus.setStatus("200");
+        commonStatus.setResponse("200");
+        return commonStatus;
+    }
+
 }
