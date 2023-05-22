@@ -15,4 +15,7 @@ public class Subject {
 
     private String name;
 
+    private int grade;
+
+    private Long lessonID;
 }
