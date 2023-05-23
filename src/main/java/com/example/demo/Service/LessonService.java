@@ -30,7 +30,7 @@ public class LessonService {
     public List<Lesson> getAllLessons(){return lessonRepository.findAll();}
 
     //delete lesson
-    public CommonStatus deleteSubject(Long id){
+    public CommonStatus deleteLesson(Long id){
         lessonRepository.findById(id);
 
         lessonRepository.deleteById(id);

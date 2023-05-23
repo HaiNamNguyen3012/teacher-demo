@@ -48,7 +48,7 @@ public class LessonController {
     //Delete Subject
     @DeleteMapping("/{id}")
     public ResponseEntity<CommonStatus> deleteSubject(@PathVariable Long id){
-        return ResponseEntity.ok(lessonService.deleteSubject(id));
+        return ResponseEntity.ok(lessonService.deleteLesson(id));
     }
 
 }
