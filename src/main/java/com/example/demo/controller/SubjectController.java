@@ -27,7 +27,8 @@ public class SubjectController {
     //Get All Subject
     @GetMapping
     public ResponseEntity<List<Subject>> getAllSubjects(){
-        return ResponseEntity.ok(SubjectService.getAllSubjects());
+
+        return ResponseEntity.ok(subjectService.getAllSubjects());
     }
 
     //Create Subject
